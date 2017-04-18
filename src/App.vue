@@ -62,7 +62,7 @@ export default {
   },
   components:{
       extendTab1: extendTab1,
-      extendTab2: extendTab2,
+      extendTab2: extendTab2
   }
 }
 
