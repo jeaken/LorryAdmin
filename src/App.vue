@@ -10,16 +10,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Brand</a>
+          <a class="navbar-brand" href="#"><img src="../static/img/logo.png" alt="" width="60%"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <form class="navbar-form navbar-right">
+          <form class="navbar-form navbar-right" id="nav-search">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
+              <input type="text" class="form-control" placeholder="请输入车牌号查询">
             </div>
-            <button type="button" class="btn btn-default">Submit</button>
+            <button type="button" class="btn btn-default"></button>
           </form>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -31,11 +31,11 @@
       <!--边栏-->
       <aside class="col-xs-1 col-sm-1 col-md-1 col-lg-1" id="aside">
         <ul>
-          <li v-for="(tab, index) in Tabs" @click="developTab(index, tab.view)"><router-link :to="tab.link">{{tab.text}}</router-link></li>
+          <li v-for="(tab, index) in Tabs" @click="developTab(index, tab.view)" :class="{'aside-li-hover': isHover == index}"><router-link :to="tab.link">{{tab.text}}</router-link></li>
         </ul>
       </aside>
       <!--地图-->
-      <article class="col-xs-11 col-sm-11 col-md-11 col-lg-11" id="article"><router-view></router-view></article>
+      <article class="col-xs-11 col-sm-11 col-md-11 col-lg-11" id="article" @click="closeLi()"><router-view></router-view></article>
     </main>
   </div>
 </template>
@@ -47,7 +47,8 @@ export default {
   name: 'app',
   data () {
     return {
-      currentView: '',
+      isHover: 0,// tab_active样式
+      currentView: '',// 切换组件
       Tabs: [
         {text: "物流全景", link:"/Overall"},
         {text: "物流信息", link:"/", view: "extendTab1"},
@@ -58,6 +59,11 @@ export default {
   methods: {
     developTab: function(ind, view) {
       this.currentView = view;
+      this.isHover = ind;
+    },
+    closeLi: function() {
+      this.currentView = '';
+      this.isHover = -1;
     }
   },
   components:{
@@ -71,5 +77,6 @@ export default {
   @import './assets/css/appVue.scss';
   .navbar.navbar-inverse {
     border-radius: 0;
+    margin-bottom: 0;
   }
 </style>

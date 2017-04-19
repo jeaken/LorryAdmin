@@ -5,21 +5,42 @@
 /*
   大小
  */
+#nav-search {
+  font-size: 0;
+  border: 1px solid #0bacd3;
+  border-radius: 10px; }
+  #nav-search .btn {
+    border: none;
+    border-radius: 0;
+    padding: 7px 12px;
+    background: url("./../static/img/search.png") center no-repeat #222;
+    background-size: contain; }
+  #nav-search .form-control {
+    border: none;
+    border-radius: 0;
+    background: #222;
+    color: #fff; }
+
 #aside {
-  background: gold;
+  background: #222;
   position: absolute;
   bottom: 0;
-  top: 52px;
+  top: 54px;
   left: 0;
   padding: 0; }
-
-#aside li {
-  height: 4rem;
-  line-height: 4rem;
-  font-size: 1.5rem;
-  font-family: "Arial Black";
-  border-bottom: 1px solid #eee;
-  cursor: pointer; }
+  #aside li {
+    font-size: 1.5rem;
+    font-family: "Arial Black";
+    height: 4rem;
+    line-height: 4rem;
+    cursor: pointer; }
+    #aside li:hover {
+      background-color: #333; }
+  #aside a {
+    color: #fff;
+    cursor: pointer; }
+  #aside li.aside-li-hover {
+    background-color: #0a5bc4; }
 
 /*导航条效果*/
 #section-li1, #section-li2 {
@@ -27,24 +48,26 @@
   position: absolute;
   height: 4rem;
   line-height: 4rem;
-  background: #665589;
+  background: #0a5bc4;
   left: 8.33%;
   overflow: hidden;
   z-index: 999; }
 
 #section-li1 {
   width: 16rem;
-  top: 99px; }
+  top: 102px; }
   #section-li1 li {
     font-size: 1.5rem;
     width: 8rem;
     display: inline-block; }
     #section-li1 li:hover {
-      background: #631686; }
+      background: #2e8def; }
+    #section-li1 li a {
+      color: #fff; }
 
 #section-li2 {
   width: 24rem;
-  top: 148px;
+  top: 150px;
   overflow: visible; }
 
 .component-fade-enter-active, .component-fade-leave-active {
@@ -58,7 +81,7 @@
   top: 52px;
   left: 8.33%;
   bottom: 0;
-  background: yellowgreen;
-  z-index: -999; }
+  z-index: -999;
+  padding: 0; }
 
 /*# sourceMappingURL=appVue.css.map */
