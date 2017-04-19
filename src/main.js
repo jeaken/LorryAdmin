@@ -4,6 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import VueRouter from 'vue-router'
 
+// import url('https://js.arcgis.com/3.15/esri/css/esri.css')
+import * as esriLoader from 'esri-loader'
+
 import './assets/css/normal.css'
 import './assets/css/bootstrap.css'
 
