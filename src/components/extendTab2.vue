@@ -41,7 +41,8 @@
   }
 </script>
 <style>
-  .searchText {
-    top: 7px;
+  .form-control.searchText {
+    top: 13px;
+    height: 36px;
   }
 </style>

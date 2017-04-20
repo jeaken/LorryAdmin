@@ -14,10 +14,12 @@
     border-radius: 0;
     padding: 7px 12px;
     background: url("./../static/img/search.png") center no-repeat #222;
-    background-size: contain; }
+    background-size: contain;
+    outline: none; }
   #nav-search .form-control {
     border: none;
     border-radius: 0;
+    height: 35px;
     background: #222;
     color: #fff; }
 
@@ -25,7 +27,7 @@
   background: #222;
   position: absolute;
   bottom: 0;
-  top: 54px;
+  top: 55px;
   left: 0;
   padding: 0; }
   #aside li {
@@ -55,7 +57,7 @@
 
 #section-li1 {
   width: 16rem;
-  top: 102px; }
+  top: 115px; }
   #section-li1 li {
     font-size: 1.5rem;
     width: 8rem;
@@ -67,7 +69,7 @@
 
 #section-li2 {
   width: 24rem;
-  top: 150px;
+  top: 175px;
   overflow: visible; }
 
 .component-fade-enter-active, .component-fade-leave-active {

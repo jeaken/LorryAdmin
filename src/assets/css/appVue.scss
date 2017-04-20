@@ -28,10 +28,12 @@ $child_li_width: 8rem; // 展开li标签的宽度
     padding: 7px 12px;
     background: url("./../static/img/search.png") center no-repeat $nav_bgcolor;
     background-size: contain;
+    outline: none;
   }
   .form-control {
     border: none;
     border-radius: 0;
+    height: 35px;
     background: $nav_bgcolor;
     color: $normal_color;
   }
@@ -42,7 +44,7 @@ $child_li_width: 8rem; // 展开li标签的宽度
   background: $nav_bgcolor;
   position: absolute;
   bottom: 0;
-  top: 54px;
+  top: 55px;
   left: 0;
   padding: 0;
   li {
@@ -78,7 +80,7 @@ $child_li_width: 8rem; // 展开li标签的宽度
 }
 #section-li1 {
   width: $child_li_width * 2;
-  top: 102px;
+  top: 115px;
 
   li {
     font-size: $normal_size;
@@ -95,7 +97,7 @@ $child_li_width: 8rem; // 展开li标签的宽度
 }
 #section-li2 {
   width: $child_li_width * 3;
-  top: 150px;
+  top: 175px;
   overflow: visible;
 }
 
