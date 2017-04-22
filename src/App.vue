@@ -75,6 +75,7 @@ export default {
 </script>
 <style lang="scss">
   @import './assets/css/appVue.scss';
+
   .navbar.navbar-inverse {
     border-radius: 0;
     margin-bottom: 0;

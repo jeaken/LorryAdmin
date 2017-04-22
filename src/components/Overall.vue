@@ -1,6 +1,7 @@
 <template>
   <div id="overall" class="tundra">
     <div id="map" ></div>
+    <button @click="centerZoom()" id="zoomCenter" class="btn btn-default" :class="{'hidden': isHide}">★</button>
   </div>
 </template>
 <script>
@@ -10,22 +11,37 @@
     name: 'overall',
     data () {
       return {
-
+        map: {'loaded': ''},
+        isHide: true
+      }
+    },
+    watch: {
+      'map.loaded': function () {
+        if(this.map.loaded == true) {
+          this.isHide = false;
+        }
       }
     },
     methods: {
+        // 创建地图
       createMap: function () {
-        esriLoader.dojoRequire(["esri/map"], (Map) => {
-          let map = new Map("map",{
-            center: [-118, 34.5],
-            zoom: 8,
+        esriLoader.dojoRequire(["esri/map", "dojo/domReady!"], (Map) => {
+          this.map = new Map("map",{
+            center: [120.44, 36.14],
+            zoom: 11,
             logo:false,
-            basemap:"topo"
+            basemap:"osm"
           });
         });
+      },
+      // 缩放到中心图层
+      centerZoom: function() {
+        this.map.centerAndZoom([120.44, 36.14], 11);
       }
+
     },
     mounted: function(){
+        // 监听esriLoader是否存在，创建map
       if (!esriLoader.isLoaded()) {
         // no, lazy load it the ArcGIS API before using its classes
         esriLoader.bootstrap((err) => {
@@ -43,18 +59,14 @@
         // ArcGIS API is already loaded, just create the map
         this.createMap();
       }
-    }
+    },
+
   }
 </script>
 <style>
   @import url('https://js.arcgis.com/3.15/dijit/themes/tundra/tundra.css');
   @import url('https://js.arcgis.com/3.20/esri/css/esri.css');
 
-  #map {
-    position: absolute;;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
+  @import './../assets/css/overRall.css';
+
 </style>

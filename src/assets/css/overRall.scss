@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+$button_size: 30px; // 地图功能小标签的宽度和高度
+
+/*功能行的类*/
+.hidden {
+  display: none;
+}
+
+/*样式*/
+#map {
+  position: absolute;;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+#zoomCenter {
+  width:$button_size;
+  height: $button_size;
+  position: absolute;
+  top: 100px;
+  left: 20px;
+  z-index: 30;
+  padding: 4px 8px;
+  background-color: rgba(200, 200, 200, 0.5);
+
+  &:hover {
+    background-color: #eee;
+  }
+}
+
+/*复写*/
+.esriSimpleSlider {
+  background-color: rgba(200, 200, 200, 0.5);
+  border : none;
+}
+.esriSimpleSliderVertical .esriSimpleSliderIncrementButton {
+  border-bottom: 1px solid #ededed;
+}
