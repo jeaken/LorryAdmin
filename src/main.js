@@ -7,15 +7,19 @@ import VueRouter from 'vue-router'
 import './assets/css/normal.css'
 import './assets/css/bootstrap.css'
 
-import Overall from './components/Overall'
-import SearchResult from './components/SearchResult'
+import Overall from './components/Overall' // 地图
+import SearchResult from './components/SearchResult' //　查询结果
+import Lorrys from './components/Lorrys.vue' // 全部卡车
+import NewLorry from './components/NewLorry.vue' // 新增卡车
+
+// 野狗实时
+import ref from './assets/js/Tool'
+Vue.use(ref)
 
 Vue.use(VueRouter)
-
 Vue.config.productionTip = false
 
 // 引入组件
-
 // 定义路由 & 路由重定向
 const routes = [
   {
@@ -29,6 +33,14 @@ const routes = [
   {
     path: '/SearchResult',
     component: SearchResult
+  },
+  {
+    path: '/Lorrys',
+    component: Lorrys
+  },
+  {
+    path: '/NewLorry',
+    component: NewLorry
   },
 ]
 

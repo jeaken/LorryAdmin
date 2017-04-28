@@ -1,0 +1,74 @@
+<template>
+  <div id="lorrys" class="container">
+
+    <div class="row">
+      <div class="col-sm-10 col-md-10 col-lg-10 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+        <table class="table table-hover table-striped">
+          <caption>物流卡车信息</caption>
+          <thead>
+          <tr>
+            <th>车辆编号</th>
+            <th>起点</th>
+            <th>终点</th>
+            <th>当前地址</th>
+            <th>全程时间</th>
+            <th>剩余时间</th>
+            <th>行驶状态</th>
+            <th>操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="list in lists">
+            <td>{{list.code}}</td>
+            <td>{{list.start}}</td>
+            <td>{{list.end}}</td>
+            <td>{{list.current_lng}}</td>
+            <td>{{list.current_lat}}</td>
+            <td>{{list.speed}}</td>
+            <td>{{list.state}}</td>
+            <td>
+            <a>修改</a>
+            <a>删除</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</template>
+<script>
+
+  export default {
+    name: 'lorrys',
+    data () {
+      return {
+        lists:[],
+        ref: this.ref()
+      }
+    },
+    mounted: function(){
+      let that = this;
+      this.ref.on("child_added", function(snapshot) {
+          let text = snapshot.val();
+          that.lists.push(text);
+      });
+    },
+    methods: {
+
+    }
+
+  }
+
+</script>
+<style>
+ #lorrys {
+   position: relative;
+   top: 4px;
+ }
+  /*复写*/
+ .table-hover > tbody > tr:hover {
+   background: lightblue;
+ }
+</style>

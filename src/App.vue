@@ -31,7 +31,9 @@
       <!--边栏-->
       <aside class="col-xs-1 col-sm-1 col-md-1 col-lg-1" id="aside">
         <ul>
-          <li v-for="(tab, index) in Tabs" @click="developTab(index, tab.view)" :class="{'aside-li-hover': isHover == index}"><router-link :to="tab.link">{{tab.text}}</router-link></li>
+          <li v-for="(tab, index) in Tabs" @click="developTab(index, tab.view)" :class="{'aside-li-hover': isHover == index}">
+            <router-link :to="tab.link" >{{tab.text}}</router-link>
+          </li>
         </ul>
       </aside>
       <!--地图-->

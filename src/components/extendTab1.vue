@@ -2,7 +2,7 @@
 <template>
   <section id="section-li1">
     <ul>
-      <li v-for="tab in Tabs"><a href="#">{{tab.text}}</a></li>
+      <li v-for="tab in Tabs"><router-link :to="tab.link">{{tab.text}}</router-link></li>
     </ul>
   </section>
 </template>
@@ -12,8 +12,8 @@
     data() {
         return {
             Tabs: [
-              {text: "所有卡车"},
-              {text: "增加卡车"}
+              {text: "所有卡车", link: "/Lorrys"},
+              {text: "增加卡车", link: "/NewLorry"}
             ]
         }
     },

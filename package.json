@@ -84,7 +84,9 @@
     "webpack-bundle-analyzer": "^2.2.1",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.16.1",
-    "webpack-merge": "^2.6.1"
+    "webpack-merge": "^2.6.1",
+    "wilddog": "^2.5.5",
+    "wildgeo": "^0.5.0"
   },
   "engines": {
     "node": ">= 4.0.0",

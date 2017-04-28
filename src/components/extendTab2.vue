@@ -21,7 +21,7 @@
     name: 'section-li2',
     data() {
       return {
-        placeHolder:'',
+        placeHolder:'车牌查询',
         Tabs: [
           {text: "车牌查询"},
           {text: "终点查询"},
