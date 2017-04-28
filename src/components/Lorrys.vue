@@ -18,13 +18,14 @@
           </tr>
           </thead>
           <tbody>
+          <!--车牌号 起点 终点 当前位置 全程时间 剩余时间 行驶状态-->
           <tr v-for="list in lists">
             <td>{{list.code}}</td>
             <td>{{list.start}}</td>
             <td>{{list.end}}</td>
-            <td>{{list.current_lng}}</td>
-            <td>{{list.current_lat}}</td>
-            <td>{{list.speed}}</td>
+            <td>{{list.current}}</td>
+            <td>00:00:00</td>
+            <td>00:00:00</td>
             <td>{{list.state}}</td>
             <td>
             <a>修改</a>
