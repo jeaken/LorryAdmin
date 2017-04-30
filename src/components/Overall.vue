@@ -50,12 +50,24 @@
 
       // 添加所有经纬度坐标
       let that = this;
-      this.ref.on("child_added", function (snapshot) {
+//      this.ref.on("child_added", function (snapshot) {
+//        let text = snapshot.val();
+//        that.location_lng.push(text.current_lng);
+//        that.location_lat.push(text.current_lat);
+//        console.log(that.location_lat)
+//      });
+
+      this.ref.on('value', function(snapshot) {
         let text = snapshot.val();
-        that.location_lng.push(text.current_lng);
-        that.location_lat.push(text.current_lat);
-      });
-      this.ref.on('value', function() {
+
+        that.location_lng = [];
+        that.location_lat = [];
+
+        for(let key in text) {
+          that.location_lng.push(text[key].current_lng);
+          that.location_lat.push(text[key].current_lat);
+        }
+
         that.createCar();// 监听数据改变事件，改变则重新渲染界面
       });
 
@@ -85,7 +97,6 @@
             }
             let graphicLayer = new GraphicsLayer();// 创建图层
             graphicLayer.id = 'layer_car';// 设置图层id
-            this.map.addLayer(graphicLayer);// 添加图层
 
             // 循环遍历添加小车图标
             for (let i = 0; i < this.location_lng.length; i++) {
@@ -93,12 +104,15 @@
                 longitude: this.location_lng[i],
                 latitude: this.location_lat[i]
               }),
-              syCar = new PictureMarkerSymbol("./../../static/img/logo.png", 20, 20),// 创建注记点url，大小
-              graphic = new Graphic(ptCar, syCar);//创建图像
+                syCar = new PictureMarkerSymbol("./../../static/img/logo.png", 20, 20),// 创建注记点url，大小
+                graphic = new Graphic(ptCar, syCar);//创建图像
 
               //把图像添加到刚才创建的图层上
               graphicLayer.add(graphic);
             }
+
+            this.map.addLayer(graphicLayer);// 添加图层
+
           });
       },
 
