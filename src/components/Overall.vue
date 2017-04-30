@@ -25,11 +25,8 @@
           this.isHide = false;
           this.createCar();// 创建小车图标
         }
-      },
-//      'location':{
-//          handler: function() {this.createCar();},// 根据数据变化渲染小车
-//          deep: true
-//      }
+      }
+
     },
     mounted: function () {
       // 监听esriLoader是否存在，创建map
@@ -57,10 +54,9 @@
         let text = snapshot.val();
         that.location_lng.push(text.current_lng);
         that.location_lat.push(text.current_lat);
-
-//        that.createCar();
-//        that.location.push(text);
-//        that.createCar();
+      });
+      this.ref.on('value', function() {
+        that.createCar();// 监听数据改变事件，改变则重新渲染界面
       });
 
     },
@@ -70,7 +66,7 @@
         esriLoader.dojoRequire(["esri/map", "dojo/domReady!"], (Map) => {
           this.map = new Map("map", {
             center: [104.073516, 30.661806],
-            zoom: 12,
+            zoom: 10,
             logo: false,
             basemap: "osm"
           });
@@ -78,22 +74,17 @@
       },
       // 缩放到中心图层
       centerZoom: function () {
-        this.map.centerAndZoom([104.073516, 30.661806], 12);
-      },
-      //　创建图层
-      createLayer: function () {
-        esriLoader.dojoRequire(["esri/map", "esri/layers/GraphicsLayer", "esri/graphic", "esri/geometry/Point", "esri/symbols/PictureMarkerSymbol", "dojo/domReady!"],
-          (Map, GraphicsLayer, Graphic, Point, PictureMarkerSymbol) => {
-            let graphicLayer = new GraphicsLayer();// 创建图层
-
-            this.map.addLayer(graphicLayer);// 添加图层
-          });
+        this.map.centerAndZoom([104.073516, 30.661806], 10);
       },
       // 创建小车图标
       createCar: function () {
         esriLoader.dojoRequire(["esri/map", "esri/layers/GraphicsLayer", "esri/graphic", "esri/geometry/Point", "esri/symbols/PictureMarkerSymbol", "dojo/domReady!"],
           (Map, GraphicsLayer, Graphic, Point, PictureMarkerSymbol) => {
+            if(this.map.getLayer('layer_car')) {
+              this.map.removeLayer(this.map.getLayer("layer_car"));
+            }
             let graphicLayer = new GraphicsLayer();// 创建图层
+            graphicLayer.id = 'layer_car';// 设置图层id
             this.map.addLayer(graphicLayer);// 添加图层
 
             // 循环遍历添加小车图标
@@ -102,13 +93,12 @@
                 longitude: this.location_lng[i],
                 latitude: this.location_lat[i]
               }),
-                syCar = new PictureMarkerSymbol("./../../static/img/logo.png", 10, 10),// 创建注记点url，大小
-                graphic = new Graphic(ptCar, syCar);//创建图像
+              syCar = new PictureMarkerSymbol("./../../static/img/logo.png", 20, 20),// 创建注记点url，大小
+              graphic = new Graphic(ptCar, syCar);//创建图像
 
               //把图像添加到刚才创建的图层上
               graphicLayer.add(graphic);
             }
-
           });
       },
 

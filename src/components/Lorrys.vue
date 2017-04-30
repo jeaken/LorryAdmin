@@ -19,7 +19,7 @@
           </thead>
           <tbody>
           <!--车牌号 起点 终点 当前位置 全程时间 剩余时间 行驶状态-->
-          <tr v-for="list in lists">
+          <tr v-for="(list, index) in lists">
             <td>{{list.code}}</td>
             <td>{{list.start}}</td>
             <td>{{list.end}}</td>
@@ -29,7 +29,7 @@
             <td>{{list.state}}</td>
             <td>
             <a>修改</a>
-            <a>删除</a>
+            <a @click="remove(index)">删除</a>
             </td>
           </tr>
           </tbody>
@@ -55,8 +55,14 @@
           let text = snapshot.val();
           that.lists.push(text);
       });
+      this.ref.on("value", function(snapshot) {
+        that.lists = snapshot.val();// 改变vue中数据
+      });
     },
     methods: {
+      remove : function(indx) {
+          this.ref.child(this.lists[indx].code).remove();
+      }
 
     }
 
