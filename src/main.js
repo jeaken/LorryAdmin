@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import VueRouter from 'vue-router'
+import Vuex from 'vuex'
+import store from './vuex/store'
 
 import './assets/css/normal.css'
 import './assets/css/bootstrap.css'
@@ -17,6 +19,7 @@ import ref from './assets/js/Tool'
 Vue.use(ref)
 
 Vue.use(VueRouter)
+Vue.use(Vuex)
 Vue.config.productionTip = false
 
 // 引入组件
@@ -54,6 +57,7 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })

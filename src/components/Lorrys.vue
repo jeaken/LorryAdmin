@@ -28,7 +28,7 @@
             <td>00:00:00</td>
             <td>{{list.state}}</td>
             <td>
-            <a>修改</a>
+            <router-link to="/NewLorry"><a @click="setUpdate(index)">修改</a></router-link>
             <a @click="remove(index)">删除</a>
             </td>
           </tr>
@@ -60,8 +60,11 @@
       });
     },
     methods: {
-      remove : function(indx) {
-          this.ref.child(this.lists[indx].code).remove();
+      remove: function(indx) {
+        this.ref.child(this.lists[indx].code).remove();
+      },
+      setUpdate: function(indx) {
+        this.$store.commit('getUpdate', this.lists[indx]);
       }
 
     }

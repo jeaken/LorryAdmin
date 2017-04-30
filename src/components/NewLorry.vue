@@ -24,13 +24,15 @@
           <div class="form-group">
             <label for="inputNumber1" class="col-sm-3 control-label">当前经度</label>
             <div class="col-sm-9">
-              <input type="number" class="form-control" id="inputNumber1" v-model="current_lng" placeholder="请输入当前地址(经度)">
+              <input type="number" class="form-control" id="inputNumber1" v-model="current_lng"
+                     placeholder="请输入当前地址(经度)">
             </div>
           </div>
           <div class="form-group">
             <label for="inputNumber2" class="col-sm-3 control-label">当前纬度</label>
             <div class="col-sm-9">
-              <input type="number" class="form-control" id="inputNumber2" v-model="current_lat" placeholder="请输入当前地址(纬度)">
+              <input type="number" class="form-control" id="inputNumber2" v-model="current_lat"
+                     placeholder="请输入当前地址(纬度)">
             </div>
           </div>
           <div class="form-group">
@@ -47,7 +49,6 @@
           </div>
           <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9">
-              <!--<a class="btn btn-default" @click="saveData()">保存</a>-->
               <router-link to="/Lorrys"><a class="btn btn-default" @click="saveData()">保存</a></router-link>
               <router-link to="/Lorrys"><a class="btn btn-default">取消</a></router-link>
             </div>
@@ -64,60 +65,76 @@
     name: 'newLorry',
     data () {
       return {
-        code: '',
-        start: '',
-        end: '',
-        current_lng: '',
-        current_lat: '',
-        speed: '',
-        state: '',
+        code: this.$store.state.update_car.code,
+        start:　this.$store.state.update_car.start,
+        end: this.$store.state.update_car.end,
+        current_lng:this.$store.state.update_car.current_lng,
+        current_lat: this.$store.state.update_car.current_lat,
+        speed: this.$store.state.update_car.speed,
+        state: this.$store.state.update_car.state,
 
         ref: this.ref()
       }
     },
-    mounted: function(){
+    mounted: function () {
 
     },
     methods: {
-        saveData: function() {
-          this.ref.child(this.code).set({
-            "code": this.code,
-            "start": this.start,
-            "end": this.end,
+      saveData: function () {
+        this.ref.child(this.code).set({
+          "code": this.code,
+          "start": this.start,
+          "end": this.end,
 
-            "current": this.current,
-            "current_lng": this.current_lng,
-            "current_lat": this.current_lat,
+          "current": this.current,
+          "current_lng": this.current_lng,
+          "current_lat": this.current_lat,
 
-            "amount_time": this.amount_time,
-            "overplus_time": this.overplus_time,
-            "speed": this.speed,
+          "amount_time": this.amount_time,
+          "overplus_time": this.overplus_time,
+          "speed": this.speed,
 
-            "state": this.current_state
-          });
-        }
+          "state": this.current_state
+        });
+      }
 
     },
     computed: {
-        current: function() {
-          // 计算当前位置，通过"current_lng": ,"current_lat"这两个字段
-          return (this.current_lng && this.current_lat) ? "当前位置" : this.start;},
-        amount_time: function() {
-          // 计算全程所用时间，通过速度以及全程路程计算
-          return "00:00:00";
-        },
-        overplus_time: function() {
-          // 计算全程所用时间，通过速度以及剩余路程计算
-          return "00:00:00";
-        },
-        current_state: function() {
-          if(this.state == -1) {
-            return "故障报修";
-          }else if(this.state == 1) {
-            return "正常行驶";
-          }else {
-            return "熄火";
-          }
+
+      current: function () {
+        // 计算当前位置，通过"current_lng": ,"current_lat"这两个字段
+        return (this.current_lng && this.current_lat) ? "当前位置" : this.start;
+      },
+      amount_time: function () {
+        // 计算全程所用时间，通过速度以及全程路程计算
+        return "00:00:00";
+      },
+      overplus_time: function () {
+        // 计算全程所用时间，通过速度以及剩余路程计算
+        return "00:00:00";
+      },
+      current_state: function () {
+        if (this.state == -1) {
+          return "故障报修";
+        } else if (this.state == 1) {
+          return "正常行驶";
+        } else {
+          return "熄火";
+        }
+      },
+    },
+    watch: {
+        "$store.state.update_car": {
+          handler: function () {
+              this.code = this.$store.state.update_car.code;
+              this.start =　this.$store.state.update_car.start;
+              this.end = this.$store.state.update_car.end;
+              this.current_lng = this.$store.state.update_car.current_lng;
+              this.current_lat = this.$store.state.update_car.current_lat;
+              this.speed = this.$store.state.update_car.speed;
+              this. state = this.$store.state.update_car.state;
+          },
+          deep: true
         }
     }
 
@@ -125,8 +142,8 @@
 
 </script>
 <style>
-#newLorry {
-  position: relative;
-  top: 4px;
-}
+  #newLorry {
+    position: relative;
+    top: 4px;
+  }
 </style>
