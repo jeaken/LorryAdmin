@@ -11,7 +11,7 @@
             <th>起点</th>
             <th>终点</th>
             <th>当前地址</th>
-            <th>全程时间</th>
+            <th>全程耗时</th>
             <th>剩余时间</th>
             <th>行驶状态</th>
             <th>操作</th>
@@ -65,8 +65,7 @@
       },
       setUpdate: function(indx) {
         this.$store.commit('getUpdate', this.lists[indx]);
-      }
-
+      },
     }
 
   }

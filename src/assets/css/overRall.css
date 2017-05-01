@@ -23,6 +23,32 @@
   #zoomCenter:hover {
     background-color: #eee; }
 
+.panelView {
+  width: 16rem;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  z-index: 30;
+  overflow: hidden;
+  display: block; }
+  .panelView #panel {
+    width: 16rem;
+    position: relative; }
+    .panelView #panel .list-group-item {
+      font-family: Arial;
+      font-size: 1.2rem;
+      padding: 5px 15px; }
+
+.component-fade-enter-active, .component-fade-leave {
+  right: 0;
+  opacity: 1;
+  transition: all .5s ease; }
+
+.component-fade-enter, .component-fade-leave-active {
+  right: -200px;
+  opacity: 0;
+  transition: all .5s ease; }
+
 /*复写*/
 .esriSimpleSlider {
   background-color: rgba(200, 200, 200, 0.5);

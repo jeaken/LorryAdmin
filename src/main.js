@@ -6,6 +6,7 @@ import VueRouter from 'vue-router'
 import Vuex from 'vuex'
 import store from './vuex/store'
 
+
 import './assets/css/normal.css'
 import './assets/css/bootstrap.css'
 

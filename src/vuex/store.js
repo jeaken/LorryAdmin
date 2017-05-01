@@ -8,12 +8,13 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    update_car: ''
+    update_car: '',
   },
   mutations: {
     getUpdate (state, code) {
       state.update_car = code;
-    }
+    },
+
   }
 
 });

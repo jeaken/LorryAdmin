@@ -1,11 +1,17 @@
 <template>
   <div id="overall" class="tundra">
-    <div id="map"></div>
+    <div id="map" @mousemove="showCoordinates($event)"></div>
     <button @click="centerZoom()" id="zoomCenter" class="btn btn-default" :class="{'hidden': isHide}">★</button>
-  </div>
+    <div :class="{panelView: isPanelView}" v-show="isPanelView">
+      <transition name="component-fade" mode="out-in">
+        <component :is="panelView" :indxObj="indxObj"></component>
+      </transition>
+    </div>
+    </div>
 </template>
 <script>
   import esriLoader from 'esri-loader'
+  import Panel from './Panel'
 
   export default {
     name: 'overall',
@@ -13,10 +19,15 @@
       return {
         map: {'loaded': ''},
         isHide: true,
+        panelView:'panel',
+        isPanelView: false,
 
         ref: this.ref(),
         location_lng: [],
-        location_lat: []
+        location_lat: [],
+        lorrys: {},
+        indxObj: {}
+
       }
     },
     watch: {
@@ -24,6 +35,30 @@
         if (this.map.loaded == true) {
           this.isHide = false;
           this.createCar();// 创建小车图标
+
+          // 监听小车hover事件
+          let imgCar = document.getElementById('layer_car_layer');
+          let that = this;// this在监听时已经改变了
+          imgCar.addEventListener('mouseover', function(e) {
+            that.panelView = 'panel';
+            that.isPanelView = true;
+
+            let indx = e.graphic.attributes["count"],
+                index = 0;
+            //　获得对应小车的属性值
+            for(let key in that.lorrys) {
+                if(index == indx) {
+                  that.indxObj = that.lorrys[key];
+                  return;
+                }
+                index++;
+            }
+
+          });
+          imgCar.addEventListener('mouseout', function() {
+            that.panelView = '';
+            that.isPanelView = false;
+          });
         }
       }
 
@@ -50,22 +85,15 @@
 
       // 添加所有经纬度坐标
       let that = this;
-//      this.ref.on("child_added", function (snapshot) {
-//        let text = snapshot.val();
-//        that.location_lng.push(text.current_lng);
-//        that.location_lat.push(text.current_lat);
-//        console.log(that.location_lat)
-//      });
-
       this.ref.on('value', function(snapshot) {
-        let text = snapshot.val();
+        that.lorrys = snapshot.val();
 
         that.location_lng = [];
         that.location_lat = [];
 
-        for(let key in text) {
-          that.location_lng.push(text[key].current_lng);
-          that.location_lat.push(text[key].current_lat);
+        for(let key in that.lorrys) {
+          that.location_lng.push(that.lorrys[key].current_lng);
+          that.location_lat.push(that.lorrys[key].current_lat);
         }
 
         that.createCar();// 监听数据改变事件，改变则重新渲染界面
@@ -106,16 +134,24 @@
               }),
                 syCar = new PictureMarkerSymbol("./../../static/img/logo.png", 20, 20),// 创建注记点url，大小
                 graphic = new Graphic(ptCar, syCar);//创建图像
-
-              //把图像添加到刚才创建的图层上
-              graphicLayer.add(graphic);
+                graphic.attributes = {// 给图片设置索引
+                  "count": i
+                };
+                //把图像添加到刚才创建的图层上
+                graphicLayer.add(graphic);
             }
-
             this.map.addLayer(graphicLayer);// 添加图层
-
           });
       },
 
+      // 显示当前坐标
+      showCoordinates: function(e) {
+//        console.log(e.mapPoint.x)
+      }
+
+    },
+    components:{
+      panel: Panel,
     },
 
   }

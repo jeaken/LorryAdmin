@@ -1,6 +1,8 @@
 @charset "utf-8";
 
 $button_size: 30px; // 地图功能小标签的宽度和高度
+$fontsize: 1.2rem; // 字体大小
+$panel_width: 16rem; // 展示栏宽度
 
 /*功能行的类*/
 .hidden {
@@ -30,6 +32,40 @@ $button_size: 30px; // 地图功能小标签的宽度和高度
   }
 }
 
+//展示面板
+.panelView {
+  width: $panel_width;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  z-index: 30;
+  overflow: hidden;
+  display: block;
+
+  #panel {
+    width: $panel_width;
+    position: relative;
+
+    .list-group-item {
+      font-family: Arial;
+      font-size: $fontsize;
+      padding: 5px 15px;
+    }
+  }
+
+}
+
+.component-fade-enter-active, .component-fade-leave {
+  right: 0;
+  opacity: 1;
+  transition: all .5s ease;
+}
+.component-fade-enter, .component-fade-leave-active {
+  right: -200px;
+  opacity: 0;
+  transition: all .5s ease;
+}
+
 /*复写*/
 .esriSimpleSlider {
   background-color: rgba(200, 200, 200, 0.5);
@@ -38,3 +74,4 @@ $button_size: 30px; // 地图功能小标签的宽度和高度
 .esriSimpleSliderVertical .esriSimpleSliderIncrementButton {
   border-bottom: 1px solid #ededed;
 }
+

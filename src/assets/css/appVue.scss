@@ -6,7 +6,6 @@ $nav_bgcolor: #222;// nav aside北京颜色
 $normal_bgcolor: #fff; //页面主色调
 $normal_color: #fff; // 页面字体颜色
 $child_li_bgcolor: rgb(10, 91, 196);
-; // 展开li标签的颜色
 $child_li_bgcolorhover: rgb(46, 141, 239); // 展开li标签的颜色hover状态
 
 /*
@@ -44,7 +43,7 @@ $child_li_width: 8rem; // 展开li标签的宽度
   background: $nav_bgcolor;
   position: absolute;
   bottom: 0;
-  top: 55px;
+  top: 52px;
   left: 0;
   padding: 0;
   li {
@@ -80,7 +79,7 @@ $child_li_width: 8rem; // 展开li标签的宽度
 }
 #section-li1 {
   width: $child_li_width * 2;
-  top: 103px;
+  top: 100px;
 
   li {
     font-size: $normal_size;
@@ -97,7 +96,7 @@ $child_li_width: 8rem; // 展开li标签的宽度
 }
 #section-li2 {
   width: $child_li_width * 3;
-  top: 151px;
+  top: 148px;
   overflow: visible;
 }
 
